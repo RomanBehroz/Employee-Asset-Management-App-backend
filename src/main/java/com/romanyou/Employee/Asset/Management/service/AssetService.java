@@ -65,5 +65,10 @@ public interface AssetService {
      */
     List<Asset> fetchAssetListByBrand(String brand);
 
+    /**
+     * Fetches Assets list by the given employee id
+     * @param employeeId id of the employee
+     * @return list of assets
+     */
     List<Asset> fetchAssetsByEmployee(long employeeId);
 }

@@ -33,6 +33,11 @@ public interface AssetRepository extends JpaRepository<Asset, Long> {
      */
     Asset findBySerialNumber(String serialNumber);
 
+    /**
+     * finds Assets by the given current Employee
+     * @param currentUser current employee
+     * @return list of Assets
+     */
     List<Asset> findByCurrentUser(Employee currentUser);
 
 }
