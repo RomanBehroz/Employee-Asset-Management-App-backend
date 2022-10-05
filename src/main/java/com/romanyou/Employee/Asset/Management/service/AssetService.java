@@ -64,4 +64,6 @@ public interface AssetService {
      * @return
      */
     List<Asset> fetchAssetListByBrand(String brand);
+
+    List<Asset> fetchAssetsByEmployee(long employeeId);
 }

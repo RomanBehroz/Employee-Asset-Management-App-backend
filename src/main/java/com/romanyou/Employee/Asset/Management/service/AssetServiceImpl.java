@@ -1,10 +1,12 @@
 package com.romanyou.Employee.Asset.Management.service;
 
 import com.romanyou.Employee.Asset.Management.entity.Asset;
+import com.romanyou.Employee.Asset.Management.entity.Employee;
 import com.romanyou.Employee.Asset.Management.exception.AlreadyExistException;
 import com.romanyou.Employee.Asset.Management.exception.EmptyFieldException;
 import com.romanyou.Employee.Asset.Management.exception.NotFoundException;
 import com.romanyou.Employee.Asset.Management.repository.AssetRepository;
+import com.romanyou.Employee.Asset.Management.repository.EmployeeRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -17,6 +19,9 @@ public class AssetServiceImpl implements AssetService{
 
     @Autowired
     private AssetRepository assetRepository;
+
+    @Autowired
+    private EmployeeRepository employeeRepository;
 
     @Override
     public Asset saveAsset(Asset asset) throws EmptyFieldException, AlreadyExistException {
@@ -105,5 +110,11 @@ public class AssetServiceImpl implements AssetService{
     @Override
     public List<Asset> fetchAssetListByBrand(String brand) {
         return assetRepository.findByBrand(brand);
+    }
+
+    @Override
+    public List<Asset> fetchAssetsByEmployee(long employeeId) {
+        Employee dbEmp = employeeRepository.findByEmployeeId(employeeId);
+        return assetRepository.findByCurrentUser(dbEmp);
     }
 }

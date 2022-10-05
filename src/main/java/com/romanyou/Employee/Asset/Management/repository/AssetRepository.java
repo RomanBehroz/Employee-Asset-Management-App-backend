@@ -1,6 +1,7 @@
 package com.romanyou.Employee.Asset.Management.repository;
 
 import com.romanyou.Employee.Asset.Management.entity.Asset;
+import com.romanyou.Employee.Asset.Management.entity.Employee;
 import com.romanyou.Employee.Asset.Management.entity.Handover;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Modifying;
@@ -32,5 +33,6 @@ public interface AssetRepository extends JpaRepository<Asset, Long> {
      */
     Asset findBySerialNumber(String serialNumber);
 
+    List<Asset> findByCurrentUser(Employee currentUser);
 
 }

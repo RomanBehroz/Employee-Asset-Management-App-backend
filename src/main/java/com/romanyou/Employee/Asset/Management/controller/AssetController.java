@@ -42,6 +42,11 @@ public class AssetController {
         return assetService.fetchAssetById(assetId);
     }
 
+    @GetMapping("/assets/emp/{employeeId}")
+    public List<Asset> fetchAssetsByEmployee(@PathVariable("employeeId") long employeeId){
+        return assetService.fetchAssetsByEmployee(employeeId);
+    }
+
     @DeleteMapping("/assets/{id}")
     public String deleteAssetById(@PathVariable("id") Long assetId){
 
