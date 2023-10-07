@@ -126,5 +126,11 @@ public class EmployeeServiceImpl implements EmployeeService{
         return true;
     }
 
+    @Override
+    public int getNumberOfTotalEmployees() {
+
+        return employeeRepository.findAll().size();
+    }
+
 
 }

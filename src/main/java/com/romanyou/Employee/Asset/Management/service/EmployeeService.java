@@ -70,4 +70,5 @@ public interface EmployeeService {
     boolean deleteEmployee(Long employeeId) throws NotFoundException;
 
 
+    int getNumberOfTotalEmployees();
 }
