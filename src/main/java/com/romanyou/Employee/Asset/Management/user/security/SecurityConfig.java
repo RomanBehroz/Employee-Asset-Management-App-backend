@@ -37,12 +37,12 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
         http.csrf().disable();
         http.sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS);
         // to make paths with no security
-        http.authorizeRequests().antMatchers("/auth/users/**","/auth/login/**", "/auth/refreshtoken/**", "/employees/**","/assets/**", "/handover/**", "/return/**").permitAll();
+        http.authorizeRequests().antMatchers("/auth/login/**", "/auth/refreshtoken/**").permitAll();
 //        http.authorizeRequests().antMatchers("/auth/refreshtoken/**").permitAll();
 //        http.authorizeRequests().antMatchers(HttpMethod.GET, "/employees").permitAll();
 //        http.authorizeRequests().antMatchers(HttpMethod.POST, "/employees").hasAnyAuthority("ROLE_ADMIN");
-        http.authorizeRequests().antMatchers(HttpMethod.GET, "/auth/**").hasAnyAuthority("ROLE_USER");
-        http.authorizeRequests().antMatchers(HttpMethod.POST, "/auth/user/save/**").hasAnyAuthority("ROLE_ADMIN");
+//        http.authorizeRequests().antMatchers(HttpMethod.GET, "/auth/**").hasAnyAuthority("ROLE_USER");
+//        http.authorizeRequests().antMatchers(HttpMethod.POST, "/auth/user/save/**").hasAnyAuthority("ROLE_ADMIN");
         http.authorizeRequests().anyRequest().authenticated();
         http.addFilter(customAuthenticationFilter);
         http.addFilterBefore(new CustomAuthorizationFilter(), UsernamePasswordAuthenticationFilter.class);

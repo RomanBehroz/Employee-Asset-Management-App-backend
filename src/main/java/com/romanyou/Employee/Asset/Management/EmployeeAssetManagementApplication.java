@@ -40,27 +40,27 @@ public class EmployeeAssetManagementApplication {
 		return new BCryptPasswordEncoder();
 	}
 
-//	@Bean
-//	CommandLineRunner run(UserService userService){
-//		return args -> {
-//			userService.saveRole(new Role(null, "ROLE_USER"));
-//			userService.saveRole(new Role(null, "ROLE_MANAGER"));
-//			userService.saveRole(new Role(null, "ROLE_ADMIN"));
-//			userService.saveRole(new Role(null, "ROLE_SUPER_ADMIN"));
-//
-//			userService.saveUser(new AppUser(null, "Roman Behroz", "roman","123", new ArrayList<>()));
-//			userService.saveUser(new AppUser(null, "Hoda Yousof", "hoda","123", new ArrayList<>()));
-//			userService.saveUser(new AppUser(null, "Mehral Behroz", "mehral","123", new ArrayList<>()));
-//			userService.saveUser(new AppUser(null, "Elena Yousof", "elena","123", new ArrayList<>()));
-//
-//
-//			userService.addRoleToUser("roman", "ROLE_SUPER_ADMIN");
-//			userService.addRoleToUser("hoda", "ROLE_ADMIN");
-//			userService.addRoleToUser("hoda", "ROLE_MANAGER");
-//			userService.addRoleToUser("mehral", "ROLE_USER");
-//			userService.addRoleToUser("elena", "ROLE_USER");
-//		};
-//	}
+	@Bean
+	CommandLineRunner run(UserService userService){
+		return args -> {
+			userService.saveRole(new Role(null, "ROLE_USER"));
+			userService.saveRole(new Role(null, "ROLE_MANAGER"));
+			userService.saveRole(new Role(null, "ROLE_ADMIN"));
+			userService.saveRole(new Role(null, "ROLE_SUPER_ADMIN"));
+
+			userService.saveUser(new AppUser(null, "Roman Behroz", "roman","123", new ArrayList<>()));
+			userService.saveUser(new AppUser(null, "Hoda Yousof", "hoda","123", new ArrayList<>()));
+			userService.saveUser(new AppUser(null, "Mehral Behroz", "mehral","123", new ArrayList<>()));
+			userService.saveUser(new AppUser(null, "Elena Yousof", "elena","123", new ArrayList<>()));
+
+
+			userService.addRoleToUser("roman", "ROLE_SUPER_ADMIN");
+			userService.addRoleToUser("hoda", "ROLE_ADMIN");
+			userService.addRoleToUser("hoda", "ROLE_MANAGER");
+			userService.addRoleToUser("mehral", "ROLE_USER");
+			userService.addRoleToUser("elena", "ROLE_USER");
+		};
+	}
 
 
 }
