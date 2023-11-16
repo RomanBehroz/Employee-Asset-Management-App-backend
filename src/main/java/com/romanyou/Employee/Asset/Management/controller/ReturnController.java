@@ -39,17 +39,17 @@ public class ReturnController {
     }
 
 
-    @PostMapping("/return-asset/{employeeId}")
+    @PostMapping("/return/asset/{employeeId}")
     public String assetReturn (@RequestBody Asset asset, @PathVariable("employeeId") Long employeeId) throws NotFoundException, EmptyFieldException {
         return returnService.assetReturn(asset, employeeId);
     }
 
-    @GetMapping("/return-list/{employeeId}")
+    @GetMapping("/return/list/{employeeId}")
     public List<Return> fetchReturnListByEmployee(@PathVariable("employeeId") Long employeeId) throws NotFoundException {
         return returnService.fetchReturnListByEmployee(employeeId);
     }
 
-    @GetMapping("/returns/latest")
+    @GetMapping("/return/latest")
     public List<Return> latestReturns(){
         return returnRepository.findLast5Returns();
     }

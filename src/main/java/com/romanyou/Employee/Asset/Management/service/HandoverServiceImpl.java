@@ -50,31 +50,30 @@ public class HandoverServiceImpl implements HandoverService{
 
     @Override
     public void assetHandover(Asset asset, Long employeeId) throws NotFoundException, AlreadyExistException {
-        Optional<Asset> newAsset = assetRepository.findById(asset.getAssetId());
+//        Optional<Asset> newAsset = assetRepository.findById(asset.getAssetId());
 
 
 
         Optional<Employee> employee = employeeRepository.findById(employeeId);
 
 
-        if(newAsset.get().getCurrentUser()!=null){
-            Employee currentUser = newAsset.get().getCurrentUser();
-            throw new AlreadyExistException("Asset is already being used by: " + currentUser);
-        }
-        newAsset.get().setCurrentUser(employee.get());
+//        if(newAsset.get().getCurrentUser()!=null){
+//            Employee currentUser = newAsset.get().getCurrentUser();
+//            throw new AlreadyExistException("Asset is already being used by: " + currentUser);
+//        }
+//        newAsset.get().setCurrentUser(employee.get());
 
-        assetRepository.save(newAsset.get());
 
-        if(!newAsset.isPresent()){
-            throw new NotFoundException("Asset not found!");
-        }
 
-        if(!employee.isPresent()){
+        if(employee.isEmpty()){
             throw new NotFoundException("Employee not found!");
         }
 
         Date date = new Date();
-        handoverRepository.assign(asset.getAssetId(), employeeId, date);
+        asset.setCurrentUser(employee.get());
+        Handover handover = new Handover(null, employee.get(), asset, date);
+
+        handoverRepository.save(handover);
     }
 
 

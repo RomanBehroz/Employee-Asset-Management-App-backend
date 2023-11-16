@@ -45,7 +45,7 @@ public interface HandoverRepository extends JpaRepository<Handover, Long> {
      */
     @Modifying
     @Transactional
-    @Query(nativeQuery = true, value = "INSERT INTO handover (asset_id, employee_id, handover_date) VALUES(?1, ?2, ?3)")
+    @Query(nativeQuery = true, value = "INSERT INTO handover (handover_id, asset_id, employee_id, handover_date) VALUES(null, ?1, ?2, ?3)")
     void assign(Long assetId, Long employeeId, Date date);
 
 

@@ -70,7 +70,7 @@ public class HandoverController {
         return"Assigned Succesfully!";
     }
 
-    @GetMapping("/handovers/latest")
+    @GetMapping("/handover/latest")
     public List<Handover> latestHandovers(){
         return handoverRepository.findLast5Handovers();
     }

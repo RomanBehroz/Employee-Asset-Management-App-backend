@@ -15,8 +15,9 @@ import org.springframework.security.config.http.SessionCreationPolicy;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
+import org.springframework.web.bind.annotation.CrossOrigin;
 
-
+@CrossOrigin(origins = "*")
 @Configuration @EnableWebSecurity @RequiredArgsConstructor
 public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
@@ -36,9 +37,10 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
         http.csrf().disable();
         http.sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS);
         // to make paths with no security
-        http.authorizeRequests().antMatchers("/auth/login").permitAll();
-        http.authorizeRequests().antMatchers(HttpMethod.GET, "/employees").permitAll();
-        http.authorizeRequests().antMatchers(HttpMethod.POST, "/employees").hasAnyAuthority("ROLE_ADMIN");
+        http.authorizeRequests().antMatchers("/auth/users/**","/auth/login/**", "/auth/refreshtoken/**", "/employees/**","/assets/**", "/handover/**", "/return/**").permitAll();
+//        http.authorizeRequests().antMatchers("/auth/refreshtoken/**").permitAll();
+//        http.authorizeRequests().antMatchers(HttpMethod.GET, "/employees").permitAll();
+//        http.authorizeRequests().antMatchers(HttpMethod.POST, "/employees").hasAnyAuthority("ROLE_ADMIN");
         http.authorizeRequests().antMatchers(HttpMethod.GET, "/auth/**").hasAnyAuthority("ROLE_USER");
         http.authorizeRequests().antMatchers(HttpMethod.POST, "/auth/user/save/**").hasAnyAuthority("ROLE_ADMIN");
         http.authorizeRequests().anyRequest().authenticated();
